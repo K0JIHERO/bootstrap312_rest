@@ -40,8 +40,12 @@ public class UserController {
         modelAndView.addObject("createdUser", createdUser);
         modelAndView.addObject("roles", uniqueRoles);
 
+//        modelAndView.addObject("updateUser", userService.findById(id));
+        modelAndView.addObject("updateRoles", roleService.findAllRoles());
+
         return modelAndView;
     }
+
 
     @GetMapping(value = "user/user-list_")
     public ModelAndView findAllUser(Principal currentUser) {
