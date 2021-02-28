@@ -28,11 +28,14 @@ public class UserController {
     }
 
     @GetMapping(value = "admin/user-list")
-    public ModelAndView findAllAdmin() {
+    public ModelAndView findAllAdmin(Principal principal, User createdUser) {
+        User currentUser = userService.findByLastName(principal.getName());
         ModelAndView modelAndView = new ModelAndView();
         List<User> users = userService.findAll();
         modelAndView.setViewName("admin/user-list");
         modelAndView.addObject("users", users);
+        modelAndView.addObject("currentUser", currentUser);
+        modelAndView.addObject("createdUser", createdUser);
         return modelAndView;
     }
 

@@ -2,40 +2,164 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Users</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Admin Panel</title>
 </head>
 <body>
-<div th:switch="${users}">
-    <h2 th:case="null">No users found!</h2>
-    <div th:case="*">
-        <h2>Users</h2>
-        <table border="1">
-            <thead>
-            <tr>
-                <th>Id</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>E-Mail</th>
-                <th>Password</th>
-                <th>Roles</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="user : ${users}">
-                <td th:text="${user.id}"></td>
-                <td th:text="${user.firstName}"></td>
-                <td th:text="${user.lastName}"></td>
-                <td th:text="${user.email}"></td>
-                <td th:text="${user.password}"></td>
-                <td th:text="${user.roles}"></td>
-                <td><a th:href="@{user-update/{id}(id=${user.id})}">Edit</a></td>
-                <td><a th:href="@{user-delete/{id}(id=${user.id})}">Delete</a></td>
-            </tr>
-            </tbody>
-        </table>
+
+<div class="row">
+    <div class="col-2 p-3 mb-2 bg-dark text-white">
+        <div th:text="${currentUser.email}"></div></div>
+    <div class="col-9 p-3 mb-2 bg-dark text-white">
+        <div th:text="${currentUser.roles}"></div></div>
+    <div class="col-1 p-3 mb-2 bg-dark text-white">
+        <a th:href="@{/logout}" class="text-secondary">Logout</a></div>
+
+    <div class="row">
+
+        <div class="col-4">
+            <div class="list-group" id="list-tab" role="tablist">
+                <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="admin">Admin</a>
+                <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="user">User</a>
+            </div>
+        </div>
+
+
+        <div class="col-8">
+            <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
+
+
+                    <h2>Admin Panel</h2>
+<!--                вкладки-->
+                    <nav>
+                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                            <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Users Table</a>
+                            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">New User</a>
+                        </div>
+                    </nav>
+
+                        <div class="tab-content" id="nav-tabContent2">
+                            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                                <div th:switch="${users}">
+                                    <h2 th:case="null">No users found!</h2>
+                                    <div th:case="*">
+                            <br>
+                            <h4>All Users</h4>
+                            <table>
+                            <thead>
+                                <tr>
+                                <th width="100">Id</th>
+                                <th width="150">First Name</th>
+                                <th width="150">Last Name</th>
+                                <th width="200">E-Mail</th>
+<!--                            <th width="100">Password</th>-->
+                                <th width="150">Roles</th>
+                                <th width="100">Edit</th>
+                                <th width="100">Delete</th>
+                                </tr>
+                            </thead>
+                                <tbody>
+                                <tr th:each="user : ${users}">
+                                    <td th:text="${user.id}"></td>
+                                    <td th:text="${user.firstName}"></td>
+                                    <td th:text="${user.lastName}"></td>
+                                    <td th:text="${user.email}"></td>
+<!--                    <td th:text="${user.password}"></td>-->
+                                    <td th:text="${user.roles}"></td>
+
+                                    <td><a th:href="@{user-update/{id}(id=${user.id})}" class="btn btn-info" role="button">Edit</a></td>
+                                    <td><a th:href="@{user-delete/{id}(id=${user.id})}" class="btn btn-danger" role="button">Delete</a></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            </div>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                                <div>
+                                    <h4>Add new user</h4>
+                                        <div>
+                                            <form >
+                                                <div class="form-group"> <!-- Fisrt Name -->
+                                                    <label for="name_id" class="control-label">First Name</label>
+                                                    <input type="text" class="form-control" id="name_id" name="full_name" placeholder="John">
+                                                </div>
+
+                                                <div class="form-group"> <!-- Last Name -->
+                                                    <label for="lastName_id" class="control-label">Last Name</label>
+                                                    <input type="text" class="form-control" id="lastName_id" name="last_name" placeholder="Deer">
+                                                </div>
+
+                                                <div class="form-group"> <!-- Email -->
+                                                    <label for="email_id" class="control-label">Email</label>
+                                                    <input type="text" class="form-control" id="email_id" name="email" placeholder="mail@mail.com">
+                                                </div>
+
+                                                <div class="form-group"> <!-- Password-->
+                                                    <label for="password_id" class="control-label">Password</label>
+                                                    <input type="text" class="form-control" id="password_id" name="password">
+                                                </div>
+
+                                                <div class="form-group"> <!-- Role Button -->
+                                                    <label for="role_id" class="control-label">Roles</label>
+                                                    <select class="form-control" id="role_id">
+                                                        <option value="AD">ADMIN</option>
+                                                        <option value="US">USER</option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="form-group"> <!-- Submit Button -->
+                                                    <button type="submit" class="btn btn-info">Add new user</button>
+                                                </div>
+
+                                            </form>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+<!--                        вкладки. конец-->
+
+                </div>
+
+                <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
+                    <div th:switch="${users}">
+                        <h2>User Information Page</h2>
+                            <h4>About User</h4>
+                        <div>
+                            <table style="border-bottom: black">
+                                <thead>
+                                <tr>
+                                    <th width="100" height="50">Id</th>
+                                    <th width="200">First Name</th>
+                                    <th width="150">Last Name</th>
+                                    <th width="200">E-Mail</th>
+                                    <!--                    <th width="100">Password</th>-->
+                                    <th width="150">Roles</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <td th:text="*{currentUser.id}"></td>
+                                    <td th:text="*{currentUser.firstName}"></td>
+                                    <td th:text="*{currentUser.lastName}"></td>
+                                    <td th:text="*{currentUser.email}"></td>
+                                    <td th:text="*{currentUser.roles}"></td>
+                                </tbody>
+                            </table>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
     </div>
-    <p><a href="user-create">Create user</a></p>
-    <p><a th:href="@{/logout}">Logout</a></p>
+    </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
 </body>
 </html>
