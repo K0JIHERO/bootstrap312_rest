@@ -32,10 +32,14 @@ public class UserController {
         User currentUser = userService.findByLastName(principal.getName());
         ModelAndView modelAndView = new ModelAndView();
         List<User> users = userService.findAll();
+        Set<Role> uniqueRoles = roleService.findAllRoles();
+
         modelAndView.setViewName("admin/user-list");
         modelAndView.addObject("users", users);
         modelAndView.addObject("currentUser", currentUser);
         modelAndView.addObject("createdUser", createdUser);
+        modelAndView.addObject("roles", uniqueRoles);
+
         return modelAndView;
     }
 
