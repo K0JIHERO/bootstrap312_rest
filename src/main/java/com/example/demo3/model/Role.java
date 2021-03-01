@@ -61,7 +61,13 @@ public class Role implements GrantedAuthority {
 
     @Override
     public String toString() {
-        return role;
+        if (role.endsWith("N")) {
+            return "ADMIN";
+        } else {
+            return "USER";
+        }
+
+//        return role;
     }
 
     @Override
