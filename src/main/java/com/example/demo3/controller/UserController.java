@@ -52,7 +52,7 @@ public class UserController {
         User user = userService.findByLastName(currentUser.getName());
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("user/user-list_");
-        modelAndView.addObject("users", user);
+        modelAndView.addObject("currentUser", user);
         return modelAndView;
     }
 

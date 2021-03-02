@@ -2,6 +2,7 @@ create table users(
     id bigint not null primary key auto_increment,
     name varchar(255) not null,
     last_name varchar(255) not null,
+    age int not null,
     email varchar(255) not null,
     password varchar(255) not null)
     ENGINE = InnoDB;
