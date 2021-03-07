@@ -37,8 +37,8 @@
                     <div th:switch="${currentUser}">
                         <h2>User Information Page</h2>
                         <h4>About User</h4>
-                        <div>
-                            <table style="border-bottom: black">
+                        <td>
+                            <table class="table table-striped table-bordered table-condensed">
                                 <thead>
                                 <tr>
                                     <th width="100" height="50">Id</th>
@@ -56,7 +56,7 @@
                                 <td th:text="*{currentUser.lastName}"></td>
                                 <td th:text="*{currentUser.age}"></td>
                                 <td th:text="*{currentUser.email}"></td>
-                                <td th:text="*{currentUser.roles}"></td>
+                                <td><div th:each="i : ${currentUser.getRoles()}" th:text="${#strings.substringAfter(i.getAuthority(), '_') + ' '}"></div></td>
                                 </tbody>
                             </table>
                         </div>
