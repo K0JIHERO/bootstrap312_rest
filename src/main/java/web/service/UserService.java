@@ -1,64 +1,59 @@
-package com.example.demo3.service;
+package web.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import com.example.demo3.dao.UserDao;
-import com.example.demo3.model.Role;
-import com.example.demo3.model.User;
-
+import web.Model.Role;
+import web.Model.User;
+import web.Repositories.UserRepository;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserService implements UserDetailsService {
 
-    private final UserDao userDao;
+    private final UserRepository userRepository;
 
     @Autowired
-    public UserServiceImpl(UserDao userDao) {
-        this.userDao = userDao;
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 
     @Transactional
-    @Override
     public User findByLastName(String lastname) {
-        return userDao.findByLastName(lastname);
+        return userRepository.findByEmail(lastname);
     }
 
     @Transactional
-    @Override
-    public User findById(Long id) {
-        return userDao.findById(id);
+    public Optional<User> findById(Long id) {
+        return userRepository.findById(id);
     }
 
     @Transactional
-    @Override
+    public User findByLastName2(String lastname) {
+        return userRepository.findByLastName(lastname);
+    }
+
+    @Transactional
     public List<User> findAll() {
-        return userDao.findAll();
+        return userRepository.findAll();
     }
 
     @Transactional
-    @Override
     public void saveUser(User user) {
-        userDao.saveUser(user);
+        userRepository.save(user);
     }
 
     @Transactional
-    @Override
     public void deleteById(Long id) {
-        userDao.deleteById(id);
-    }
-
-    @Transactional
-    @Override
-    public void updateUser(User user) {
-        userDao.updateUser(user);
+        userRepository.deleteById(id);
     }
 
     @Transactional

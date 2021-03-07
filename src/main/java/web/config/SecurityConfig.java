@@ -1,4 +1,4 @@
-package com.example.demo3.config;
+package web.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -9,8 +9,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import com.example.demo3.config.handler.SuccessUserHandler;
-import com.example.demo3.service.UserService;
+import web.config.handler.LoginSuccessHandler;
+import web.service.UserService;
 
 @Configuration
 @EnableWebSecurity
@@ -21,7 +21,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-
         http
                 .csrf()
                 .disable()
@@ -31,15 +30,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .successHandler(new SuccessUserHandler())
+                .loginPage("/login").usernameParameter("email").passwordParameter("password")
+                .successHandler(new LoginSuccessHandler())
                 .permitAll()
                 .and().logout()
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/login");
     }
 
-    @Bean
-    public DaoAuthenticationProvider daoAuthenticationProvider() {
+   @Bean
+   public DaoAuthenticationProvider daoAuthenticationProvider() {
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
         authenticationProvider.setUserDetailsService(userService);
         authenticationProvider.setPasswordEncoder(passwordEncoder());

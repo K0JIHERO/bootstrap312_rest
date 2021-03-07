@@ -1,8 +1,7 @@
-package com.example.demo3.model;
+package web.Model;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Component;
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Objects;

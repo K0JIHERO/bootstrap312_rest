@@ -5,31 +5,22 @@
     <title>Create user</title>
 </head>
 <body>
-<form action="#" th:action="@{/admin/user-update}" th:object="${users}" method="post">
+<form action="#" th:action="@{/user-update}" th:object="${users}" method="post">
     <label for="id">ID</label>
     <input readonly type="number" th:field="*{id}" id="id" placeholder="ID">
     <label for="firstName">First Name</label>
     <input type="text" th:field="*{firstName}" id="firstName" placeholder="First Name">
     <label for="lastName">Last Name</label>
     <input type="text" th:field="*{lastName}" id="lastName" placeholder="Last Name">
+    <label for="email">E-mail</label>
     <label for="age">Age</label>
     <input type="text" required th:field="*{age}" id="age" placeholder="Age">
-    <label for="email">E-mail</label>
     <input type="text" th:field="*{email}" id="email" placeholder="E-Mail">
     <label for="password">Password</label>
     <input type="text" th:field="*{password}" id="password" placeholder="Password">
-
-    <!--<select id="roles" required multiple>
-        <option th:each="s : ${uniqueRoles}"
-                th:value="${s}"
-                th:text="${s}"
-                th:selected="${userRoles.contains(s)}">
-        </option>
-    </select>-->
-
     <label>
         <select multiple required size="2" th:name="roles" th:field="*{roles}">
-            <option th:each="role : ${roles}" th:value="${role}" th:text="${role}"></option>
+            <option th:each="role : ${roles}" th:value="${role.id}" th:text="${role}"></option>
         </select>
     </label>
 

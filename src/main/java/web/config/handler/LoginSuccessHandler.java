@@ -1,4 +1,4 @@
-package com.example.demo3.config.handler;
+package web.config.handler;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -7,7 +7,6 @@ import org.springframework.security.web.RedirectStrategy;
 import org.springframework.security.web.WebAttributes;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -15,7 +14,7 @@ import java.io.IOException;
 import java.util.Collection;
 
 @Component
-public class SuccessUserHandler implements AuthenticationSuccessHandler {
+public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 
     private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 
@@ -51,9 +50,9 @@ public class SuccessUserHandler implements AuthenticationSuccessHandler {
         }
 
         if (isUser) {
-            return "user/user-list_";
+            return "/user";
         } else if (isAdmin) {
-            return "admin/user-list";
+            return "/admin";
         } else {
             return "login";
         }
@@ -74,7 +73,4 @@ public class SuccessUserHandler implements AuthenticationSuccessHandler {
     protected RedirectStrategy getRedirectStrategy() {
         return redirectStrategy;
     }
-
-
-
 }
