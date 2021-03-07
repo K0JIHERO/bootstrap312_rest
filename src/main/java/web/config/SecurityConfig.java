@@ -16,6 +16,8 @@ import web.service.UserService;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    private LoginSuccessHandler loginSuccessHandler;
+
     @Autowired
     private UserService userService;
 
@@ -25,13 +27,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf()
                 .disable()
                 .authorizeRequests()
-                .antMatchers("admin").hasRole("ADMIN")
-                .antMatchers("user").hasRole("USER")
+                .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/user/**").hasAnyRole("ADMIN", "USER")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .successHandler(new LoginSuccessHandler())
                 .loginPage("/login").usernameParameter("email").passwordParameter("password")
+                .successHandler(new LoginSuccessHandler())
                 .permitAll()
                 .and().logout()
                 .logoutUrl("/logout")

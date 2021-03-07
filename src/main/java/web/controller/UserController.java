@@ -1,5 +1,6 @@
 package web.controller;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -27,16 +28,22 @@ public class UserController {
         this.roleService = roleService;
     }
 
+    @GetMapping("/")
+    public String index() {
+        return "redirect:/login";
+    }
+
     @GetMapping("/login")
     public String login() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if(authentication==null || authentication instanceof AnonymousAuthenticationToken) {
             return "/login";
         }
-        return "redirect:/";
+        return "/login";
     }
 
     @GetMapping(value = "/admin")
+    @Secured("ADMIN")
     public ModelAndView findAllAdmin(Principal principal, User createdUser) {
         User currentUser = userService.findByLastName2(principal.getName());
         ModelAndView modelAndView = new ModelAndView();
@@ -51,6 +58,7 @@ public class UserController {
     }
 
     @GetMapping(value = "/user")
+    @Secured("USER")
     public ModelAndView findAllUser(Principal currentUser) {
         User user = userService.findByLastName2(currentUser.getName());
         ModelAndView modelAndView = new ModelAndView();
@@ -60,6 +68,7 @@ public class UserController {
     }
 
     @PostMapping("/user-create")
+    @Secured("ADMIN")
     public ModelAndView createUser(User user) {
         ModelAndView modelAndView = new ModelAndView();
         userService.saveUser(user);
@@ -68,6 +77,7 @@ public class UserController {
     }
 
     @PostMapping("/user-delete/{id}")
+    @Secured("ADMIN")
     public ModelAndView deleteUser(Long id,User user, @RequestParam(value = "roles", required = false) Set<Long> roleIds) {
         ModelAndView modelAndView = new ModelAndView();
         Set<Role> currentRoles = userService.findById(id).get().getRoles();
@@ -86,6 +96,7 @@ public class UserController {
     }
 
     @PostMapping("/user-update/{id}")
+    @Secured("ADMIN")
     public ModelAndView updateUser(Long id,User user, @RequestParam(value = "roles", required = false) Set<Long> roleIds) {
         ModelAndView modelAndView = new ModelAndView();
         Set<Role> currentRoles = userService.findById(id).get().getRoles();
