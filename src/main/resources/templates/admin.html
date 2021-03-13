@@ -69,16 +69,16 @@
                             <th>Delete</th>
                         </tr>
                         </thead>
-                        <tbody>
-                            <tr th:each="user : ${users}">
-                            <td th:text="${user.id}"></td>
-                            <td th:text="${user.firstName}"></td>
-                            <td th:text="${user.lastName}"></td>
-                            <td th:text="${user.email}"></td>
-                            <td th:text="${user.age}"></td>
+                        <tbody class="forFetch2">
+<!--                            <tr class="adminInfo" th:each="user : ${users}">-->
+<!--                            <td th:text="${user.id}"></td>-->
+<!--                            <td th:text="${user.firstName}"></td>-->
+<!--                            <td th:text="${user.lastName}"></td>-->
+<!--                            <td th:text="${user.email}"></td>-->
+<!--                            <td th:text="${user.age}"></td>-->
 <!--                            <td th:text="${user.password}"></td>-->
-                            <td><div th:each="i : ${user.getRoles()}" th:text="${#strings.substringAfter(i.getAuthority(), '_') + ' '}"></div></td>
-                            <td><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#editModal" th:attrappend="data-target=${user.id}">Edit</button>
+<!--                            <td><div th:each="i : ${user.getRoles()}" th:text="${#strings.substringAfter(i.getAuthority(), '_') + ' '}"></div></td>-->
+<!--                            <td><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#editModal" th:attrappend="data-target=${user.id}">Edit</button>-->
 
 <!--                                User EDIT-->
 
@@ -143,7 +143,7 @@
 
 <!--                                User EDIT END-->
 
-                                <td><button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal" th:attrappend="data-target=${user.id}">Delete</button>
+<!--                                <td><button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal" th:attrappend="data-target=${user.id}">Delete</button>-->
 
                                     <!--                                User DELETE-->
 
@@ -223,7 +223,7 @@
                                 <div class="row justify-content-center">
                                     <div class="col-mid-4">
                                         <h4>Add new user</h4>
-                                        <form th:action="@{user-create}" th:object="${createdUser}" method="post">
+                                        <form class="new-user-form" th:object="${createdUser}">
                                             <div class="form-group">
                                                 <label for="firstName">Fisrt Name</label>
                                                 <input th:field="*{firstName}" type="text" class="form-control" id="firstName" name="firstName" placeholder="Johnny">
@@ -302,5 +302,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 </div>
+<script th:inline="javascript" type="text/javascript" th:src="@{../js/admin.js}" src="../static/js/admin.js"></script>
 </body>
 </html>

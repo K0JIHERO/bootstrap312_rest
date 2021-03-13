@@ -1,5 +1,6 @@
 package web.Model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Component;
 import javax.persistence.*;
@@ -20,6 +21,7 @@ public class Role implements GrantedAuthority {
     private String role;
 
     @ManyToMany(mappedBy = "roles")
+    @JsonBackReference
     private Set<User> users = new HashSet<>();
 
     public Set<User> getUsers() {

@@ -34,6 +34,9 @@
 
                 <!--                User Info-->
                 <div class="tab-pane fade show active" id="v-pills-user" role="tabpanel" aria-labelledby="v-pills-user-tab">
+                    <div class="userInfo row">
+
+                    </div>
                     <div th:switch="${currentUser}">
                         <h2>User Information Page</h2>
                         <h4>About User</h4>
@@ -46,17 +49,16 @@
                                     <th width="300">Last Name</th>
                                     <th width="300">Age</th>
                                     <th width="200">E-Mail</th>
-                                    <!--                    <th width="100">Password</th>-->
                                     <th width="160">Roles</th>
                                 </tr>
                                 </thead>
-                                <tbody>
-                                <td th:text="*{currentUser.id}"></td>
-                                <td th:text="*{currentUser.firstName}"></td>
-                                <td th:text="*{currentUser.lastName}"></td>
-                                <td th:text="*{currentUser.age}"></td>
-                                <td th:text="*{currentUser.email}"></td>
-                                <td><div th:each="i : ${currentUser.getRoles()}" th:text="${#strings.substringAfter(i.getAuthority(), '_') + ' '}"></div></td>
+                                <tbody class="forFetch">
+<!--                                <td th:text="*{currentUser.id}"></td>-->
+<!--                                <td th:text="*{currentUser.firstName}"></td>-->
+<!--                                <td th:text="*{currentUser.lastName}"></td>-->
+<!--                                <td th:text="*{currentUser.age}"></td>-->
+<!--                                <td th:text="*{currentUser.email}"></td>-->
+<!--                                <td><div th:each="i : ${currentUser.getRoles()}" th:text="${#strings.substringAfter(i.getAuthority(), '_') + ' '}"></div></td>-->
                                 </tbody>
                             </table>
                         </div>
@@ -75,5 +77,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 </div>
+<script th:inline="javascript" type="text/javascript" th:src="@{../js/main.js}" src="../static/js/main.js"></script>
 </body>
 </html>

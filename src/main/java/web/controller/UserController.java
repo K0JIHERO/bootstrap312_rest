@@ -11,9 +11,11 @@ import web.Model.Role;
 import web.Model.User;
 import web.service.RoleService;
 import web.service.UserService;
+
 import java.security.Principal;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Controller
@@ -113,4 +115,5 @@ public class UserController {
         modelAndView.setViewName("redirect:/admin");
         return modelAndView;
     }
+
 }
