@@ -69,51 +69,51 @@ public class UserController {
         return modelAndView;
     }
 
-    @PostMapping("/user-create")
-    @Secured("ADMIN")
-    public ModelAndView createUser(User user) {
-        ModelAndView modelAndView = new ModelAndView();
-        userService.saveUser(user);
-        modelAndView.setViewName("redirect:/admin");
-        return modelAndView;
-    }
-
-    @PostMapping("/user-delete/{id}")
-    @Secured("ADMIN")
-    public ModelAndView deleteUser(Long id,User user, @RequestParam(value = "roles", required = false) Set<Long> roleIds) {
-        ModelAndView modelAndView = new ModelAndView();
-        Set<Role> currentRoles = userService.findById(id).get().getRoles();
-        Set<Role> roles = new HashSet<>();
-        if(roleIds != null) {
-            for (Long i: roleIds) {
-                roles.add(roleService.findById(i).get());
-                user.setRoles(roles);
-            }
-        } else {
-            user.setRoles(currentRoles);
-        }
-        userService.deleteById(id);
-        modelAndView.setViewName("redirect:/admin");
-        return modelAndView;
-    }
-
-    @PostMapping("/user-update/{id}")
-    @Secured("ADMIN")
-    public ModelAndView updateUser(Long id,User user, @RequestParam(value = "roles", required = false) Set<Long> roleIds) {
-        ModelAndView modelAndView = new ModelAndView();
-        Set<Role> currentRoles = userService.findById(id).get().getRoles();
-        Set<Role> roles = new HashSet<>();
-        if(roleIds != null) {
-            for (Long i: roleIds) {
-                roles.add(roleService.findById(i).get());
-                user.setRoles(roles);
-            }
-        } else {
-            user.setRoles(currentRoles);
-        }
-        userService.saveUser(user);
-        modelAndView.setViewName("redirect:/admin");
-        return modelAndView;
-    }
+//    @PostMapping("/user-create")
+//    @Secured("ADMIN")
+//    public ModelAndView createUser(User user) {
+//        ModelAndView modelAndView = new ModelAndView();
+//        userService.saveUser(user);
+//        modelAndView.setViewName("redirect:/admin");
+//        return modelAndView;
+//    }
+//
+//    @PostMapping("/user-delete/{id}")
+//    @Secured("ADMIN")
+//    public ModelAndView deleteUser(Long id,User user, @RequestParam(value = "roles", required = false) Set<Long> roleIds) {
+//        ModelAndView modelAndView = new ModelAndView();
+//        Set<Role> currentRoles = userService.findById(id).get().getRoles();
+//        Set<Role> roles = new HashSet<>();
+//        if(roleIds != null) {
+//            for (Long i: roleIds) {
+//                roles.add(roleService.findById(i).get());
+//                user.setRoles(roles);
+//            }
+//        } else {
+//            user.setRoles(currentRoles);
+//        }
+//        userService.deleteById(id);
+//        modelAndView.setViewName("redirect:/admin");
+//        return modelAndView;
+//    }
+//
+//    @PostMapping("/user-update/{id}")
+//    @Secured("ADMIN")
+//    public ModelAndView updateUser(Long id,User user, @RequestParam(value = "roles", required = false) Set<Long> roleIds) {
+//        ModelAndView modelAndView = new ModelAndView();
+//        Set<Role> currentRoles = userService.findById(id).get().getRoles();
+//        Set<Role> roles = new HashSet<>();
+//        if(roleIds != null) {
+//            for (Long i: roleIds) {
+//                roles.add(roleService.findById(i).get());
+//                user.setRoles(roles);
+//            }
+//        } else {
+//            user.setRoles(currentRoles);
+//        }
+//        userService.saveUser(user);
+//        modelAndView.setViewName("redirect:/admin");
+//        return modelAndView;
+//    }
 
 }

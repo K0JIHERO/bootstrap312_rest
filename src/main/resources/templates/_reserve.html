@@ -1,0 +1,137 @@
+<td th:text="${user.firstName}"></td>-->
+<!--                            <td th:text="${user.lastName}"></td>-->
+<!--                            <td th:text="${user.email}"></td>-->
+<!--                            <td th:text="${user.age}"></td>-->
+<!--                            <td th:text="${user.password}"></td>-->
+<!--                            <td><div th:each="i : ${user.getRoles()}" th:text="${#strings.substringAfter(i.getAuthority(), '_') + ' '}"></div></td>-->
+<!--                            <td><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#editModal" th:attrappend="data-target=${user.id}">Edit</button>-->
+
+<!--                                User EDIT-->
+
+<td class="modal fade" id="editModal" tabindex="-1" role="dialog" th:attrappend="id=${user.id}">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLongTitle">Edit User</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+
+            <div class="modal-body">
+                <form action="#" th:object="${user}" th:action="@{user-update/{id}(id=${user.id})}"  method="post">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-md-4">
+                                <div class="form-group text-center font-weight-bold">
+                                    <label for="edit_id">ID</label>
+                                    <input class="form-control" readonly type="number" th:value="*{id}" name="id" id="edit_id" placeholder="ID">
+                                </div>
+                                <div class="form-group text-center font-weight-bold">
+                                    <label for="edit_firstName">First Name</label>
+                                    <input class="form-control" type="text" th:value="*{firstName}" name="firstName" id="edit_firstName" placeholder="First Name">
+                                </div>
+                                <div class="form-group text-center font-weight-bold">
+                                    <label for="edit_lastName">Last Name</label>
+                                    <input class="form-control" type="text" th:value="*{lastName}" name="lastName" id="edit_lastName" placeholder="Last Name">
+                                </div>
+                                <div class="form-group text-center font-weight-bold">
+                                    <label for="edit_age">Age</label>
+                                    <input class="form-control" type="number" th:value="*{age}" name="age" id="edit_age" placeholder="age">
+                                </div>
+                                <div class="form-group text-center font-weight-bold">
+                                    <label for="edit_email">Email</label>
+                                    <input class="form-control" type="text" th:value="*{email}" name="email" id="edit_email" placeholder="E-Mail">
+                                </div>
+                                <div class="form-group text-center font-weight-bold">
+                                    <label for="edit_password">Password</label>
+                                    <input class="form-control" type="text" th:value="*{password}" name="password" id="edit_password" placeholder="Password">
+                                </div>
+                                <div class="form-group text-center font-weight-bold">
+                                    <label for="edit_roles">Role</label>
+                                    <select class="form-control" multiple size="2" name="roles" id="edit_roles" th:value="*{roles}">
+                                        <option th:each="role : ${allRoles}" th:value="${role.id}" th:text="${#strings.substringAfter(role.getAuthority(), '_') + ' '}"></option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary btn-sm">Edit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</td>
+
+<!--                                User EDIT END-->
+
+<!--                                <td><button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal" th:attrappend="data-target=${user.id}">Delete</button>-->
+
+<!--                                User DELETE-->
+
+<td class="modal fade" id="deleteModal" tabindex="-1" role="dialog" th:attrappend="id=${user.id}">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLongTitle1">Delete User</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+
+            <div class="modal-body">
+                <form action="#" th:object="${user}" th:action="@{user-delete/{id}(id=${user.id})}"  method="post">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-md-4">
+                                <div class="form-group text-center font-weight-bold">
+                                    <label for="delete_id">ID</label>
+                                    <input class="form-control" readonly type="number" th:value="*{id}" name="id" id="delete_id" placeholder="ID">
+                                </div>
+                                <div class="form-group text-center font-weight-bold">
+                                    <label for="delete_firstName">First Name</label>
+                                    <input class="form-control" readonly type="text" th:value="*{firstName}" name="firstName" id="delete_firstName" placeholder="First Name">
+                                </div>
+                                <div class="form-group text-center font-weight-bold">
+                                    <label for="delete_lastName">Last Name</label>
+                                    <input class="form-control" readonly type="text" th:value="*{lastName}" name="lastName" id="delete_lastName" placeholder="Last Name">
+                                </div>
+                                <div class="form-group text-center font-weight-bold">
+                                    <label for="delete_age">Age</label>
+                                    <input class="form-control" readonly type="number" th:value="*{age}" name="age" id="delete_age" placeholder="age">
+                                </div>
+                                <div class="form-group text-center font-weight-bold">
+                                    <label for="delete_email">Email</label>
+                                    <input class="form-control" readonly type="text" th:value="*{email}" name="email" id="delete_email" placeholder="E-Mail">
+                                </div>
+                                <!--                                                                <div class="form-group text-center font-weight-bold">-->
+                                <!--                                                                    <label for="delete_pass">Password</label>-->
+                                <!--                                                                    <input class="form-control" readonly type="text" th:value="*{password}" name="password" id="delete_pass" placeholder="Password">-->
+                                <!--                                                                </div>-->
+                                <div class="form-group text-center font-weight-bold">
+                                    <label for="delete_roles">Role</label>
+                                    <select multiple class="form-control" readonly  size="2" name="roles" id="delete_roles" th:value="*{roles}">
+                                        <option th:each="role : ${allRoles}" th:value="${role.id}" th:text="${#strings.substringAfter(role.getAuthority(), '_') + ' '}"></option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</td>
+
+<!--                                DELETE END-->
+
+
