@@ -24,7 +24,7 @@ public class Role implements GrantedAuthority {
     @Transient
     @JsonIgnore
     @ManyToMany(mappedBy = "roles")
-//    @JsonBackReference
+
     private Set<User> users = new HashSet<>();
 
     public Set<User> getUsers() {

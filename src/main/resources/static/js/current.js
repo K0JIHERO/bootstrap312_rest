@@ -101,14 +101,6 @@ function displayDeleteForm(id) {
 
 //////////////////////// update user/////////////////////
 
-// function getRoles(adress) {
-//     var data = [];
-//     $(adress).find('option:selected').each(function() {
-//         data.push({id: $(this).val(), name: $(this).text(), authority: $(this).text()});
-//     });
-//     return data;
-// }
-
 function displayEditForm(id) {
     const user = users.find(user => user.id === id);
     document.getElementById("edit-id").value = user.id;

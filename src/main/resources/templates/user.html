@@ -53,12 +53,12 @@
                                 </tr>
                                 </thead>
                                 <tbody class="forFetch">
-<!--                                <td th:text="*{currentUser.id}"></td>-->
-<!--                                <td th:text="*{currentUser.firstName}"></td>-->
-<!--                                <td th:text="*{currentUser.lastName}"></td>-->
-<!--                                <td th:text="*{currentUser.age}"></td>-->
-<!--                                <td th:text="*{currentUser.email}"></td>-->
-<!--                                <td><div th:each="i : ${currentUser.getRoles()}" th:text="${#strings.substringAfter(i.getAuthority(), '_') + ' '}"></div></td>-->
+                                <td th:text="*{currentUser.id}"></td>
+                                <td th:text="*{currentUser.firstName}"></td>
+                                <td th:text="*{currentUser.lastName}"></td>
+                                <td th:text="*{currentUser.age}"></td>
+                                <td th:text="*{currentUser.email}"></td>
+                                <td><div th:each="i : ${currentUser.getRoles()}" th:text="${#strings.substringAfter(i.getAuthority(), '_') + ' '}"></div></td>
                                 </tbody>
                             </table>
                         </div>
@@ -69,14 +69,10 @@
         </div>
     </div>
 
-
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-    <!--    <script type="text/javascript" th:src="@{../js/main.js}" src="../static/js/main.js"></script>-->
-    <!--    <script type="text/javascript" th:src="@{../js/main2.js}" src="../static/js/main2.js"></script>-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 </div>
-<script th:inline="javascript" type="text/javascript" th:src="@{../js/main.js}" src="../static/js/main.js"></script>
 </body>
 </html>

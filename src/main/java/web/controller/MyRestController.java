@@ -1,10 +1,7 @@
 package web.controller;
 
-
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import web.Model.Role;
@@ -22,17 +19,18 @@ public class MyRestController {
     @Autowired
     private RoleService roleService;
 
+//    testing
     @GetMapping("/getUsers/{id}")
     public Optional<User> getUserById(@PathVariable Long id) {
         Optional<User> user = userService.findById(id);
         return user;
     }
-
+// GET
     @GetMapping(value = "/getUsers")
     public ResponseEntity<List<User>> adminPage() {
         return new ResponseEntity<>(userService.findAll(), HttpStatus.OK);
     }
-
+// POST
     @PostMapping("/getUsers")
     public String addUser(@RequestBody Map<String, Object> payload) {
         User user = new User();
@@ -52,13 +50,13 @@ public class MyRestController {
         userService.saveUser(user);
         return "200";
     }
-
+//DELETE
     @DeleteMapping("/getUsers/{id}")
     public Optional<User> deleteUser(@PathVariable Long id) {
         userService.deleteById(id);
         return userService.findById(id);
     }
-
+//PUT
     @PutMapping("/getUsers/{id}")
     public String updateUser(@PathVariable("id") Long id, @RequestBody Map<String, Object> payload) {
         User user = new User();

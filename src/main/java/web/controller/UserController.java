@@ -77,7 +77,7 @@ public class UserController {
 //        modelAndView.setViewName("redirect:/admin");
 //        return modelAndView;
 //    }
-//
+
 //    @PostMapping("/user-delete/{id}")
 //    @Secured("ADMIN")
 //    public ModelAndView deleteUser(Long id,User user, @RequestParam(value = "roles", required = false) Set<Long> roleIds) {
@@ -96,7 +96,7 @@ public class UserController {
 //        modelAndView.setViewName("redirect:/admin");
 //        return modelAndView;
 //    }
-//
+
 //    @PostMapping("/user-update/{id}")
 //    @Secured("ADMIN")
 //    public ModelAndView updateUser(Long id,User user, @RequestParam(value = "roles", required = false) Set<Long> roleIds) {

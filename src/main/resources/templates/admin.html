@@ -101,7 +101,7 @@
                                                 <div class="form-group">
                                                   <label>Email</label>
                                                   <input
-                                                    type="text"
+                                                    type="email"
                                                     id="add-email"
                                                     placeholder="Enter E-Mail"
                                                     class="form-control"
@@ -121,7 +121,7 @@
                                                 <div class="form-group">
                                                     <label>Password</label>
                                                     <input
-                                                      type="text"
+                                                      type="password"
                                                       id="add-password"
                                                       placeholder="Enter Password"
                                                       class="form-control"
@@ -130,11 +130,13 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Role</label>
-                                                    <select multiple size="2" name="roles" id="add-role">
-                                                        <option th:each="role : ${allRoles}" th:value="${role.id}" th:text="${role}"></option>
+                                                    <select required class="form-control" multiple size="2" name="roles" id="add-role">
+                                                        <option th:each="role : ${allRoles}" th:value="${role.id}" th:text="${#strings.substringAfter(role.getAuthority(), '_') + ' '}"></option>
                                                     </select>
                                                 </div>
+                                            <div class="row justify-content-center">
                                             <input type="submit" class="btn btn-success" value="Add" />
+                                            </div>
                                         </form>
                                     </div>
                                 </div>
@@ -231,7 +233,7 @@
                 <div class="form-group">
                   <label>Email</label>
                   <input
-                    type="text"
+                    type="email"
                     id="edit-email"
                     placeholder="Enter E-Mail"
                     class="form-control"
@@ -260,7 +262,7 @@
                 </div>
                 <div class="form-group">
                     <label>Role</label>
-                    <select class="form-control" multiple size="2" name="roles" id="edit-role">
+                    <select required class="form-control" multiple size="2" name="roles" id="edit-role">
                         <option th:each="role : ${allRoles}" th:value="${role.id}" th:text="${#strings.substringAfter(role.getAuthority(), '_') + ' '}"></option>
                     </select>
                 </div>
@@ -304,6 +306,9 @@
               </div>
 
               <div class="modal-body">
+                  <div class="container">
+                      <div class="row justify-content-center">
+                          <div class="col-md-4">
                 <div class="form-group">
                     <label>ID</label>
                     <input
@@ -364,6 +369,9 @@
                       required
                     />
                 </div>
+                </div>
+                </div>
+                </div>
               </div>
               
               <div class="modal-footer">
@@ -379,6 +387,8 @@
           </div>
         </div>
     </div>
+
+
 </div>
 
 
